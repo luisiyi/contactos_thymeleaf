@@ -27,7 +27,6 @@ public class ContactoServicio implements IContactoServicio{
 
     @Override
     public void guardarContacto(Contacto contacto) {
-        contacto.get
         contactoRepositorio.save(contacto);
     }
 
