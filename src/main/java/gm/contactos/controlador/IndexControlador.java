@@ -43,10 +43,17 @@ public class IndexControlador {
     }
 
     @GetMapping("/editar/{id}")
-    public String mostrarEitar(@PathVariable(value = "id") int idContacto, ModelMap modelo){
+    public String mostrarEditar(@PathVariable(value = "id") int idContacto, ModelMap modelo){
         Contacto contacto = contactoServicio.buscarContactoPorId(idContacto);
         logger.info("Contacto a editar (mostrar): " + contacto);
         modelo.put("contacto", contacto);
         return "editar";
+    }
+
+    @PostMapping("/editar")
+    public String editar(@ModelAttribute("contacto") Contacto contacto){
+        logger.info("Contacto a guardar (editar): " + contacto);
+        contactoServicio.guardarContacto(contacto);
+        return "redirect:/"; //redirect to the path controller "/"
     }
 }
